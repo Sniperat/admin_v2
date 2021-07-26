@@ -12,7 +12,8 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <h3 class="card-title">{{ business.name }}</h3>
-                        <button id="showform" class="btn btn-primary">
+                        <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -54,7 +55,9 @@
                             </div>
                             <div class="row my-2 d-flex justify-content-between">
                                 <div>Tadbirkor</div>
-                                <div><a href="{% url 'update_user' business.owner.id %}">{{ business.owner.first_name }} {{ business.owner.last_name }} {{ business.owner.second_name }}</a></div>
+                                <div>
+                                    <a href="{% url 'update_user' business.owner.id %}">{{ business.owner.first_name }} {{ business.owner.last_name }} {{ business.owner.second_name }}</a>
+                                </div>
                             </div>
                             <div class="row my-2 d-flex justify-content-between">
                                 <div>Telefon raqam</div>
@@ -65,144 +68,151 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 hideform" style="display: none">
-                <div class="card">
-                    <div class="card-header ">
-                        <h3 class="card-title">{{ business.name }}</h3>
 
-                    </div>
-                    <div class="card-body">
-                        <form method="post" action="{% url 'update_bussiness' business.id %}">
-                            {% csrf_token %}
-                            <div id="div_id_number" class="form-group"><label for="id_number" class=" requiredField">
-                                Number<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="number" maxlength="20"
-                                                     value="{{ business.number }}"
-                                                     class="textinput textInput form-control" required id="id_number">
+            <div class="collapse col-6" id="collapseExample">
+                <div class="card card-body">
+                    <div class="card">
+                        <div class="card-header ">
+                            <h3 class="card-title">{{ business.name }}</h3>
+
+                        </div>
+                        <div class="card-body">
+                            <form method="post" action="{% url 'update_bussiness' business.id %}">
+                                {% csrf_token %}
+                                <div id="div_id_number" class="form-group"><label for="id_number"
+                                                                                  class=" requiredField">
+                                    Number<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="number" maxlength="20"
+                                                         value="{{ business.number }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_number">
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="div_id_name" class="form-group"><label for="id_name" class=" requiredField">
-                                Name<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="name" maxlength="255" value="{{ business.name }}"
-                                                     class="textinput textInput form-control" required id="id_name">
+                                <div id="div_id_name" class="form-group"><label for="id_name" class=" requiredField">
+                                    Name<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="name" maxlength="255"
+                                                         value="{{ business.name }}"
+                                                         class="textinput textInput form-control" required id="id_name">
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="div_id_type" class="form-group"><label for="id_type" class=" requiredField">
-                                Type<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="type" maxlength="50" value="{{ business.type }}"
-                                                     class="textinput textInput form-control" required id="id_type">
+                                <div id="div_id_type" class="form-group"><label for="id_type" class=" requiredField">
+                                    Type<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="type" maxlength="50"
+                                                         value="{{ business.type }}"
+                                                         class="textinput textInput form-control" required id="id_type">
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="div_id_destination" class="form-group"><label for="id_destination"
+                                <div id="div_id_destination" class="form-group"><label for="id_destination"
+                                                                                       class=" requiredField">
+                                    Destination<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="destination" maxlength="255"
+                                                         value="{{ business.destination }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_destination"></div>
+                                </div>
+                                <div id="div_id_inn" class="form-group"><label for="id_inn" class=" requiredField">
+                                    Inn<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="inn" maxlength="10"
+                                                         value="{{ business.inn }}"
+                                                         class="textinput textInput form-control" required id="id_inn">
+                                    </div>
+                                </div>
+                                <div id="div_id_checking_account" class="form-group"><label for="id_checking_account"
+                                                                                            class=" requiredField">
+                                    Checking account<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="number" name="checking_account"
+                                                         value="{{ business.checking_account }}"
+                                                         class="numberinput form-control" required
+                                                         id="id_checking_account">
+                                    </div>
+                                </div>
+                                <div id="div_id_address" class="form-group"><label for="id_address"
                                                                                    class=" requiredField">
-                                Destination<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="destination" maxlength="255"
-                                                     value="{{ business.destination }}"
-                                                     class="textinput textInput form-control" required
-                                                     id="id_destination"></div>
-                            </div>
-                            <div id="div_id_inn" class="form-group"><label for="id_inn" class=" requiredField">
-                                Inn<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="inn" maxlength="10" value="{{ business.inn }}"
-                                                     class="textinput textInput form-control" required id="id_inn">
+                                    Address<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="address" maxlength="155"
+                                                         value="{{ business.address }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_address">
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="div_id_checking_account" class="form-group"><label for="id_checking_account"
+                                <div id="div_id_owner" class="form-group"><label for="id_owner" class=" requiredField">
+                                    Owner<span class="asteriskField">*</span> </label>
+                                    <div class=""><select name="owner" class="select form-control" required
+                                                          id="id_owner">
+                                        {% for us in users %}
+                                            <option value="{{ business.owner.id }}"
+                                                    {% if us.id == business.owner.id %}selected{% endif %}>
+                                                {{ us.first_name }}{{ us.last_name }}</option>
+                                        {% endfor %}
+
+                                    </select></div>
+                                </div>
+                                <div id="div_id_phone_number" class="form-group"><label for="id_phone_number"
                                                                                         class=" requiredField">
-                                Checking account<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="number" name="checking_account"
-                                                     value="{{ business.checking_account }}"
-                                                     class="numberinput form-control" required id="id_checking_account">
+                                    Phone number<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="phone_number" maxlength="14"
+                                                         value="{{ business.phone_number }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_phone_number"></div>
                                 </div>
-                            </div>
-                            <div id="div_id_address" class="form-group"><label for="id_address" class=" requiredField">
-                                Address<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="address" maxlength="155"
-                                                     value="{{ business.address }}"
-                                                     class="textinput textInput form-control" required id="id_address">
+                                <div>
+                                    <button class="btn btn-success text-right" type="submit">Saqlash</button>
                                 </div>
-                            </div>
-                            <div id="div_id_owner" class="form-group"><label for="id_owner" class=" requiredField">
-                                Owner<span class="asteriskField">*</span> </label>
-                                <div class=""><select name="owner" class="select form-control" required id="id_owner">
-                                    {% for us in users %}
-                                        <option value="{{ business.owner.id }}"
-                                                {% if us.id == business.owner.id %}selected{% endif %}>
-                                            {{ us.first_name }}{{ us.last_name }}</option>
-                                    {% endfor %}
-
-                                </select></div>
-                            </div>
-                            <div id="div_id_phone_number" class="form-group"><label for="id_phone_number"
-                                                                                    class=" requiredField">
-                                Phone number<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="phone_number" maxlength="14"
-                                                     value="{{ business.phone_number }}"
-                                                     class="textinput textInput form-control" required
-                                                     id="id_phone_number"></div>
-                            </div>
-                            <div>
-                                <button class="btn btn-success text-right" type="submit">Saqlash</button>
-                            </div>
 
 
-                            {#                            <div id="div_id_post_code" class="form-group"><label for="id_post_code"#}
-                            {#                                                                                 class=" requiredField">#}
-                            {#                                Post code<span class="asteriskField">*</span> </label>#}
-                            {#                                <div class=""><input type="text" name="post_code" maxlength="6" value="{{ mahalla.post_code }}"#}
-                            {#                                                     class="textinput textInput form-control" required#}
-                            {#                                                     id="id_post_code"></div>#}
-                            {#                            </div>#}
-                            {#                            <div id="div_id_name" class="form-group"><label for="id_name" class=" requiredField">#}
-                            {#                                Name<span class="asteriskField">*</span> </label>#}
-                            {#                                <div class=""><input type="text" name="name" maxlength="255" value="{{ mahalla.name }}"#}
-                            {#                                                     class="textinput textInput form-control" required id="id_name">#}
-                            {#                                </div>#}
-                            {#                            </div>#}
-                            {#                            <div id="div_id_rais" class="form-group"><label for="id_rais" class=" requiredField">#}
-                            {#                                Rais<span class="asteriskField">*</span> </label>#}
-                            {#                                <div class=""><select name="rais" class="select form-control" required id="id_rais">#}
-                            {#                                    {% for us in users %}#}
-                            {#                                    <option value="{{ mahalla.rais.id }}" {% if us.id == mahalla.rais.id %}selected{% endif %}>{{ us.first_name }}</option>#}
-                            {#                                    {% endfor %}#}
-                            {##}
-                            {##}
-                            {#                                </select></div>#}
-                            {#                            </div>#}
-                            {#                            <div id="div_id_secretary" class="form-group"><label for="id_secretary"#}
-                            {#                                                                                 class=" requiredField">#}
-                            {#                                Secretary<span class="asteriskField">*</span> </label>#}
-                            {#                                <div class=""><select name="secretary" class="select form-control" required#}
-                            {#                                                      id="id_secretary">#}
-                            {#                                    {% for us in users %}#}
-                            {#                                    <option value="{{ mahalla.secretary.id }}" {% if us.id == mahalla.secretary.id %}selected{% endif %}>{{ us.first_name }}</option>#}
-                            {#                                    {% endfor %}#}
-                            {##}
-                            {#                                </select></div>#}
-                            {#                            </div>#}
-                            {#                            <div id="div_id_area" class="form-group"><label for="id_area" class=" requiredField">#}
-                            {#                                Area<span class="asteriskField">*</span> </label>#}
-                            {#                                <div class=""><input type="number" name="area" class="numberinput form-control" required#}
-                            {#                                                     id="id_area" value="{{ mahalla.area }}"></div>#}
-                            {#                            </div>#}
-                            {#                            <div>#}
-                            {#                                <button class="btn btn-success text-right" type="submit">Saqlash</button>#}
-                            {#                            </div>#}
-                        </form>
+                                {#                            <div id="div_id_post_code" class="form-group"><label for="id_post_code"#}
+                                {#                                                                                 class=" requiredField">#}
+                                {#                                Post code<span class="asteriskField">*</span> </label>#}
+                                {#                                <div class=""><input type="text" name="post_code" maxlength="6" value="{{ mahalla.post_code }}"#}
+                                {#                                                     class="textinput textInput form-control" required#}
+                                {#                                                     id="id_post_code"></div>#}
+                                {#                            </div>#}
+                                {#                            <div id="div_id_name" class="form-group"><label for="id_name" class=" requiredField">#}
+                                {#                                Name<span class="asteriskField">*</span> </label>#}
+                                {#                                <div class=""><input type="text" name="name" maxlength="255" value="{{ mahalla.name }}"#}
+                                {#                                                     class="textinput textInput form-control" required id="id_name">#}
+                                {#                                </div>#}
+                                {#                            </div>#}
+                                {#                            <div id="div_id_rais" class="form-group"><label for="id_rais" class=" requiredField">#}
+                                {#                                Rais<span class="asteriskField">*</span> </label>#}
+                                {#                                <div class=""><select name="rais" class="select form-control" required id="id_rais">#}
+                                {#                                    {% for us in users %}#}
+                                {#                                    <option value="{{ mahalla.rais.id }}" {% if us.id == mahalla.rais.id %}selected{% endif %}>{{ us.first_name }}</option>#}
+                                {#                                    {% endfor %}#}
+                                {##}
+                                {##}
+                                {#                                </select></div>#}
+                                {#                            </div>#}
+                                {#                            <div id="div_id_secretary" class="form-group"><label for="id_secretary"#}
+                                {#                                                                                 class=" requiredField">#}
+                                {#                                Secretary<span class="asteriskField">*</span> </label>#}
+                                {#                                <div class=""><select name="secretary" class="select form-control" required#}
+                                {#                                                      id="id_secretary">#}
+                                {#                                    {% for us in users %}#}
+                                {#                                    <option value="{{ mahalla.secretary.id }}" {% if us.id == mahalla.secretary.id %}selected{% endif %}>{{ us.first_name }}</option>#}
+                                {#                                    {% endfor %}#}
+                                {##}
+                                {#                                </select></div>#}
+                                {#                            </div>#}
+                                {#                            <div id="div_id_area" class="form-group"><label for="id_area" class=" requiredField">#}
+                                {#                                Area<span class="asteriskField">*</span> </label>#}
+                                {#                                <div class=""><input type="number" name="area" class="numberinput form-control" required#}
+                                {#                                                     id="id_area" value="{{ mahalla.area }}"></div>#}
+                                {#                            </div>#}
+                                {#                            <div>#}
+                                {#                                <button class="btn btn-success text-right" type="submit">Saqlash</button>#}
+                                {#                            </div>#}
+                            </form>
 
+                        </div>
                     </div>
+
                 </div>
             </div>
+
         </div>
     </div>
 
 
 {% endblock content %}
 
-{% block javascripts %}
-    <script>
-        $('#showform').on('click', function () {
-            $(".hideform").css('display', 'inline')
-        })
-    </script>
-{% endblock %}

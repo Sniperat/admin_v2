@@ -12,7 +12,8 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <h3 class="card-title">{{ user.name }}</h3>
-                        <button id="showform1" class="btn btn-primary">
+                        <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -91,157 +92,162 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 hideform">
-                <div class="card">
-                    <div class="card-header ">
-                        <h3 class="card-title">{{ user }}</h3>
+            <div class="collapse col-6" id="collapseExample">
+                <div class="card card-body">
+                    <div class="card">
+                        <div class="card-header ">
+                            <h3 class="card-title">{{ user }}</h3>
 
-                    </div>
-                    <div class="card-body">
-                        <form method="post" action="{% url 'update_user' user.id %}" enctype="multipart/form-data">
+                        </div>
+                        <div class="card-body">
+                            <form method="post" action="{% url 'update_user' user.id %}" enctype="multipart/form-data">
 
-                            {% csrf_token %}
-                            <div id="div_id_first_name" class="form-group"><label for="id_first_name"
-                                                                                  class=" requiredField">
-                                First name<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="first_name" maxlength="50"
-                                                     value="{{ user.first_name }}"
-                                                     class="textinput textInput form-control" required
-                                                     id="id_first_name"></div>
-                            </div>
-                            <div id="div_id_last_name" class="form-group"><label for="id_last_name"
-                                                                                 class=" requiredField">
-                                Last name<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="last_name" maxlength="50"
-                                                     value="{{ user.last_name }}"
-                                                     class="textinput textInput form-control" required
-                                                     id="id_last_name"></div>
-                            </div>
-                            <div id="div_id_second_name" class="form-group"><label for="id_second_name"
-                                                                                   class=" requiredField">
-                                Second name<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="second_name" maxlength="50"
-                                                     value="{{ user.second_name }}"
-                                                     class="textinput textInput form-control" required
-                                                     id="id_second_name"></div>
-                            </div>
-                            <div id="div_id_birth_date" class="form-group"><label for="id_birth_date"
-                                                                                  class=" requiredField">
-                                Birth date<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="date" name="birth_date"
-                                        {#                                                     value="{{ user.birth_date.year }}-{% if user.birth_date.month|length == 0 %}0{% endif %}{{ user.birth_date.month }}-{{ user.birth_date.day|length }}0{{ user.birth_date.day }}"#}
-                                                     class="textinput finishme textInput form-control" required
-                                                     id="id_birth_date"></div>
-                            </div>
-                            <div id="div_id_sex" class="form-group"><label for="id_sex" class=" requiredField">
-                                Sex<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="sex" maxlength="5" value="{{ user.sex }}"
-                                                     class="textinput textInput form-control" required id="id_sex">
+                                {% csrf_token %}
+                                <div id="div_id_first_name" class="form-group"><label for="id_first_name"
+                                                                                      class=" requiredField">
+                                    First name<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="first_name" maxlength="50"
+                                                         value="{{ user.first_name }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_first_name"></div>
                                 </div>
-                            </div>
-                            <div id="div_id_passport_data" class="form-group"><label for="id_passport_data"
+                                <div id="div_id_last_name" class="form-group"><label for="id_last_name"
                                                                                      class=" requiredField">
-                                Passport data<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="passport_data" maxlength="9"
-                                                     value="{{ user.passport_data }}"
-                                                     class="textinput textInput form-control" required
-                                                     id="id_passport_data"></div>
-                            </div>
-                            <div id="div_id_inn" class="form-group"><label for="id_inn" class=" requiredField">
-                                Inn<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="inn" maxlength="10" value="{{ user.inn }}"
-                                                     class="textinput textInput form-control" required id="id_inn">
+                                    Last name<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="last_name" maxlength="50"
+                                                         value="{{ user.last_name }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_last_name"></div>
                                 </div>
-                            </div>
-                            <div id="div_id_marital_status" class="form-group"><label for="id_marital_status"
+                                <div id="div_id_second_name" class="form-group"><label for="id_second_name"
+                                                                                       class=" requiredField">
+                                    Second name<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="second_name" maxlength="50"
+                                                         value="{{ user.second_name }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_second_name"></div>
+                                </div>
+                                <div id="div_id_birth_date" class="form-group"><label for="id_birth_date"
                                                                                       class=" requiredField">
-                                Marital status<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="marital_status" maxlength="10"
-                                                     value="{{ user.marital_status }}"
-                                                     class="textinput textInput form-control" required
-                                                     id="id_marital_status"></div>
-                            </div>
-                            <div id="div_id_actual_address" class="form-group"><label for="id_actual_address"
-                                                                                      class=" requiredField">
-                                Actual address<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="actual_address" maxlength="50"
-                                                     value="{{ user.actual_address }}"
-                                                     class="textinput textInput form-control" required
-                                                     id="id_actual_address"></div>
-                            </div>
-                            <div id="div_id_passport_address" class="form-group"><label for="id_passport_address"
+                                    Birth date<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="date" name="birth_date"
+                                            {#                                                     value="{{ user.birth_date.year }}-{% if user.birth_date.month|length == 0 %}0{% endif %}{{ user.birth_date.month }}-{{ user.birth_date.day|length }}0{{ user.birth_date.day }}"#}
+                                                         class="textinput finishme textInput form-control" required
+                                                         id="id_birth_date"></div>
+                                </div>
+                                <div id="div_id_sex" class="form-group"><label for="id_sex" class=" requiredField">
+                                    Sex<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="sex" maxlength="5" value="{{ user.sex }}"
+                                                         class="textinput textInput form-control" required id="id_sex">
+                                    </div>
+                                </div>
+                                <div id="div_id_passport_data" class="form-group"><label for="id_passport_data"
+                                                                                         class=" requiredField">
+                                    Passport data<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="passport_data" maxlength="9"
+                                                         value="{{ user.passport_data }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_passport_data"></div>
+                                </div>
+                                <div id="div_id_inn" class="form-group"><label for="id_inn" class=" requiredField">
+                                    Inn<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="inn" maxlength="10" value="{{ user.inn }}"
+                                                         class="textinput textInput form-control" required id="id_inn">
+                                    </div>
+                                </div>
+                                <div id="div_id_marital_status" class="form-group"><label for="id_marital_status"
+                                                                                          class=" requiredField">
+                                    Marital status<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="marital_status" maxlength="10"
+                                                         value="{{ user.marital_status }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_marital_status"></div>
+                                </div>
+                                <div id="div_id_actual_address" class="form-group"><label for="id_actual_address"
+                                                                                          class=" requiredField">
+                                    Actual address<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="actual_address" maxlength="50"
+                                                         value="{{ user.actual_address }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_actual_address"></div>
+                                </div>
+                                <div id="div_id_passport_address" class="form-group"><label for="id_passport_address"
+                                                                                            class=" requiredField">
+                                    Passport address<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="passport_address" maxlength="50"
+                                                         value="{{ user.passport_address }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_passport_address"></div>
+                                </div>
+                                <div id="div_id_work_status" class="form-group"><label for="id_work_status"
+                                                                                       class=" requiredField">
+                                    Work status<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="work_status" maxlength="50"
+                                                         value="{{ user.work_status }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_work_status"></div>
+                                </div>
+                                <div id="div_id_education" class="form-group"><label for="id_education" class="">
+                                    Education
+                                </label>
+                                    <div class=""><input type="text" name="education" maxlength="50"
+                                                         value="{{ user.education }}"
+                                                         class="textinput textInput form-control" id="id_education">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div id="div_id_law_status" class="form-check"><input type="checkbox"
+                                                                                          name="law_status"
+                                                                                          value="{{ user.law_status }}"
+                                                                                          class="checkboxinput form-check-input"
+                                                                                          id="id_law_status"> <label
+                                            for="id_law_status" class="form-check-label">
+                                        Law status
+                                    </label></div>
+                                </div>
+                                <div id="div_id_mobile_phone" class="form-group"><label for="id_mobile_phone"
                                                                                         class=" requiredField">
-                                Passport address<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="passport_address" maxlength="50"
-                                                     value="{{ user.passport_address }}"
-                                                     class="textinput textInput form-control" required
-                                                     id="id_passport_address"></div>
-                            </div>
-                            <div id="div_id_work_status" class="form-group"><label for="id_work_status"
-                                                                                   class=" requiredField">
-                                Work status<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="work_status" maxlength="50"
-                                                     value="{{ user.work_status }}"
-                                                     class="textinput textInput form-control" required
-                                                     id="id_work_status"></div>
-                            </div>
-                            <div id="div_id_education" class="form-group"><label for="id_education" class="">
-                                Education
-                            </label>
-                                <div class=""><input type="text" name="education" maxlength="50"
-                                                     value="{{ user.education }}"
-                                                     class="textinput textInput form-control" id="id_education"></div>
-                            </div>
-                            <div class="form-group">
-                                <div id="div_id_law_status" class="form-check"><input type="checkbox" name="law_status"
-                                                                                      value="{{ user.law_status }}"
-                                                                                      class="checkboxinput form-check-input"
-                                                                                      id="id_law_status"> <label
-                                        for="id_law_status" class="form-check-label">
-                                    Law status
-                                </label></div>
-                            </div>
-                            <div id="div_id_mobile_phone" class="form-group"><label for="id_mobile_phone"
-                                                                                    class=" requiredField">
-                                Mobile phone<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="mobile_phone" maxlength="14"
-                                                     value="{{ user.mobile_phone }}"
-                                                     class="textinput textInput form-control" required
-                                                     id="id_mobile_phone"></div>
-                            </div>
-                            <div id="div_id_home_phone" class="form-group"><label for="id_home_phone"
-                                                                                  class=" requiredField">
-                                Home phone<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="home_phone" maxlength="14"
-                                                     value="{{ user.home_phone }}"
-                                                     class="textinput textInput form-control" required
-                                                     id="id_home_phone"></div>
-                            </div>
-                            <div id="div_id_work_phone" class="form-group"><label for="id_work_phone"
-                                                                                  class=" requiredField">
-                                Work phone<span class="asteriskField">*</span> </label>
-                                <div class=""><input type="text" name="work_phone" maxlength="14"
-                                                     value="{{ user.work_phone }}"
-                                                     class="textinput textInput form-control" required
-                                                     id="id_work_phone"></div>
-                            </div>
-                            <div id="div_id_mahalla" class="form-group"><label for="id_mahalla" class="">
-                                Mahalla
-                            </label>
-                                <div class=""><select name="mahalla" class="select form-control" id="id_mahalla">
-                                    {% for mah in mahalla %}
-                                        <option value="{{ mah.id }}"
-                                                {% if user.mahalla.id == mahalla.id %}selected{% endif %}>{{ mah.name }}</option>
-                                    {% endfor %}
+                                    Mobile phone<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="mobile_phone" maxlength="14"
+                                                         value="{{ user.mobile_phone }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_mobile_phone"></div>
+                                </div>
+                                <div id="div_id_home_phone" class="form-group"><label for="id_home_phone"
+                                                                                      class=" requiredField">
+                                    Home phone<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="home_phone" maxlength="14"
+                                                         value="{{ user.home_phone }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_home_phone"></div>
+                                </div>
+                                <div id="div_id_work_phone" class="form-group"><label for="id_work_phone"
+                                                                                      class=" requiredField">
+                                    Work phone<span class="asteriskField">*</span> </label>
+                                    <div class=""><input type="text" name="work_phone" maxlength="14"
+                                                         value="{{ user.work_phone }}"
+                                                         class="textinput textInput form-control" required
+                                                         id="id_work_phone"></div>
+                                </div>
+                                <div id="div_id_mahalla" class="form-group"><label for="id_mahalla" class="">
+                                    Mahalla
+                                </label>
+                                    <div class=""><select name="mahalla" class="select form-control" id="id_mahalla">
+                                        {% for mah in mahalla %}
+                                            <option value="{{ mah.id }}"
+                                                    {% if user.mahalla.id == mahalla.id %}selected{% endif %}>{{ mah.name }}</option>
+                                        {% endfor %}
 
-                                </select></div>
-                            </div>
-                            <div>
-                                <button class="btn btn-success text-right" type="submit">Saqlash</button>
-                            </div>
+                                    </select></div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-success text-right" type="submit">Saqlash</button>
+                                </div>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
@@ -250,37 +256,8 @@
     </div>
 
     <th id="savage" class="datam" data-day="{{ user.birth_date.day }}"
-         data-month="{{ user.birth_date.month }}"
-         data-year="{{ user.birth_date.year }}"></th>
+        data-month="{{ user.birth_date.month }}"
+        data-year="{{ user.birth_date.year }}"></th>
 
 
 {% endblock content %}
-
-{% block javascripts %}
-    <script>
-
-        $('#showform1').click(function () {
-            $(".hideform").css('display', 'inline')
-
-
-            let fday = $('.datam').data("day")
-            let fmonth = $('#savage').data("month")
-            let fyear = $('#savage').data("year")
-            console.log(fday)
-
-            if (String(fmonth).length > 1) {
-                if (String(fday).length > 1) {
-                    $(".finishme").val(fyear + '-' + fmonth + '-' + fday)
-                } else {
-                    $(".finishme").val(fyear + '-' + fmonth + '-0' + fday)
-                }
-            } else {
-                if (String(fday).length > 1) {
-                    $(".finishme").val(fyear + '-0' + fmonth + '-' + fday)
-                } else {
-                    $(".finishme").val(fyear + '-0' + fmonth + '-0' + fday)
-                }
-            }
-        })
-    </script>
-{% endblock %}
