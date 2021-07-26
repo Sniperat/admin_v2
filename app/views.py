@@ -10,7 +10,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 from django.views import View
-from .form import MahallaForm, BussinessForm, FarmForm
+from .form import MahallaForm, BussinessForm, FarmForm, UserForm
 
 from .models import Mahalla, User_info, Business, Farm
 
@@ -18,7 +18,8 @@ from .models import Mahalla, User_info, Business, Farm
 @login_required(login_url="/login/")
 def index(request):
     user = User_info.objects.all()
-    return render(request, "index.html", {'u': user})
+    form = UserForm()
+    return render(request, "index.html", {'u': user, 'form': form})
 
 
 @login_required(login_url="/login/")
@@ -182,3 +183,61 @@ class Farm_update_view(View):
         mah.save()
 
         return redirect('update_farm', pk)
+
+
+class User_view(View):
+    def get(self, request):
+        user = User_info.objects.all()
+        form = UserForm()
+        return render(request, "templatesMe/user.html", {'u': user, 'form': form})
+
+    def post(self, request):
+        farm = UserForm(request.POST, request.FILES)
+        if farm.is_valid():
+            farm.save()
+            return redirect('user')
+
+
+
+def delete_user(request, pk):
+    print(pk)
+    User_info.objects.get(id=pk).delete()
+
+    return redirect('user')
+
+
+
+class User_update_view(View):
+    def get(self, request, pk):
+        content = {
+            'user': User_info.objects.get(id=pk),
+            'form': UserForm(),
+            'mahalla': Mahalla.objects.all()
+        }
+        return render(request, 'templatesMe/user_u.html', content)
+
+    def post(self, request, pk):
+        user = User_info.objects.get(id=pk)
+        mah = Mahalla.objects.get(id=int(request.POST['mahalla']))
+        user.mahalla = mah
+        user.first_name = request.POST['first_name']
+        user.second_name = request.POST['second_name']
+        user.last_name = request.POST['last_name']
+        # user.birth_date = request.POST['birth_date']
+        user.sex = request.POST['sex']
+        user.passport_data = request.POST['passport_data']
+        user.inn = request.POST['inn']
+        user.marital_status = request.POST['marital_status']
+        user.actual_address = request.POST['actual_address']
+        user.passport_address = request.POST['passport_address']
+        user.work_status = request.POST['work_status']
+        user.education = request.POST['education']
+        # user.law_status = request.POST['law_status']
+        user.mobile_phone = request.POST['mobile_phone']
+        user.home_phone = request.POST['home_phone']
+        user.work_phone = request.POST['work_phone']
+
+
+        user.save()
+
+        return redirect('update_user', pk)

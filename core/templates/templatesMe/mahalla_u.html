@@ -34,11 +34,11 @@
                             </div>
                             <div class="row my-2 d-flex justify-content-between">
                                 <div>Mahalla rahbari</div>
-                                <div><a href="{% url 'user_u' mahalla.rais.id %}">{{ mahalla.rais.first_name }} {{ mahalla.rais.last_name }}</a></div>
+                                <div><a href="{% url 'update_user' mahalla.rais.id %}">{{ mahalla.rais.first_name }} {{ mahalla.rais.last_name }}</a></div>
                             </div>
                             <div class="row my-2 d-flex justify-content-between">
                                 <div>Rahbar kotibi</div>
-                                <div><a href="{% url 'user_u' mahalla.secretary.id %}">{{ mahalla.secretary.first_name }} {{ mahalla.secretary.last_name }}</a></div>
+                                <div><a href="{% url 'update_user' mahalla.secretary.id %}">{{ mahalla.secretary.first_name }} {{ mahalla.secretary.last_name }}</a></div>
                             </div>
                             <div class="row my-2 d-flex justify-content-between">
                                 <div>Maydoni</div>

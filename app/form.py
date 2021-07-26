@@ -1,7 +1,9 @@
+import modulefinder
+
 from django import forms
 import re
 from django.forms import widgets
-from .models import Mahalla, Business, Farm
+from .models import Mahalla, Business, Farm, User_info
 
 
 class MahallaForm(forms.ModelForm):
@@ -40,3 +42,12 @@ class FarmForm(forms.ModelForm):
     class Meta:
         model = Farm
         fields = '__all__'
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User_info
+        fields = '__all__'
+        widgets = {
+            'birth_date': forms.TextInput(attrs={'type': 'date'})
+        }

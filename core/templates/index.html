@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 {% block title %} Dashboard {% endblock %}
 
 {% block content %}
@@ -1599,54 +1599,70 @@
                 </div>
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header d-flex justify-content-between">
                             <h3 class="card-title">Fuqarolar</h3>
+                            <a href="{% url 'user' %}" type="button" class="btn btn-success h3 bold">
+                                Fuqarolar
+                            </a>
                         </div>
                         <div class="table-responsive">
                             <table class="table card-table table-vcenter text-nowrap datatable">
                                 <thead>
                                 <tr>
-                                    <th class="w-1">No.</th>
+                                    <th class="w-1">photo</th>
                                     <th>F.I.O.</th>
                                     <th>Tug'ilgan yil</th>
+                                    <th>Jinsi</th>
                                     <th>Telefon</th>
                                     <th>Passport</th>
-                                    <th>Oila</th>
-                                    <th>Kadastr</th>
-                                    <th>Sudlanganligi</th>
+                                    <th>INN</th>
+                                    <th>Oilaviy ahvoli</th>
+                                    <th>Mahalla</th>
                                     <th>Manzil</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody style="overflow-x: scroll ">
                                 <tr>
                                     {% for user in u %}
                                         <td><span class="text-muted">
-                                        001401
+                                            <span class="avatar avatar-md d-block"
+                                                  style="background-image: url({{ user.photo.url }})"></span>
+{#                                        <img style="border-radius: 50%; width: 25px; height: 25px" src="{{ user.photo.url }}" alt="">#}
                                     </span></td>
-                                        <td><a href="invoice.html" class="text-inherit">
-                                            {{ user.full_name }}
-                                        </a></td>
+                                        <td>
+                                        <a href="{% url 'update_user' user.id %}" class="text-inherit">
+                                            {{ user }}
+                                        </a>
+                                        </td>
                                         <td>
                                             {{ user.birth_date }}
                                         </td>
                                         <td>
-                                            {{ user.home_tel }}
+                                            {{ user.sex }}
                                         </td>
+                                        <td>
+                                            {{ user.mobile_phone }}
+                                        </td>
+
                                         <td>
                                             {{ user.passport_data }}
-                                        </td>
-                                        <td>
-                                            {{ user.family }}
                                         </td>
                                         <td>
                                             {{ user.inn }}
                                         </td>
                                         <td>
-                                            {{ user.work_info }}
+                                            {{ user.marital_status }}
+                                        </td>
+
+                                        <td>
+                                            <a href="{% url 'update_mahalla' user.mahalla.id %}" style="color: red">
+                                                {{ user.mahalla.name }}
+                                            </a>
                                         </td>
                                         <td>
-                                            {{ user.registration_address }}
+                                            {{ user.actual_address }}
                                         </td>
+
 
                                         </tr>
                                     {% endfor %}
@@ -1667,6 +1683,7 @@
         </div>
 
     </div>
+
 
 {% endblock content %}
 

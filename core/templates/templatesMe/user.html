@@ -1,0 +1,167 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Mahalla{% endblock %}
+
+{% block content %}
+
+    <div class="container ">
+        <div class="row row-cards row-deck my-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <h3 class="card-title">Fuqarolar</h3>
+                        <button data-toggle="modal" data-target="#exampleModal5"
+                                class="h3 btn btn-success m-0 text-white font-weight-bold ">+
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap datatable">
+                            <thead>
+                            <tr>
+                                <th class="w-1">photo</th>
+                                <th>F.I.O.</th>
+                                <th>Tug'ilgan yil</th>
+                                <th>Jinsi</th>
+                                <th>Telefon</th>
+                                <th>Passport</th>
+                                <th>INN</th>
+                                <th>Oilaviy ahvoli</th>
+                                <th>Mahalla</th>
+                                <th>Manzil</th>
+                            </tr>
+                            </thead>
+                            <tbody style="overflow-x: scroll ">
+                            <tr>
+                                {% for user in u %}
+                                    <td><span class="text-muted">
+                                        foto
+                                    </span></td>
+                                    <td>
+                                        <a href="{% url 'update_user' user.id %}" class="text-inherit">
+
+                                            {{ user }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ user.birth_date }}
+                                    </td>
+                                    <td>
+                                        {{ user.sex }}
+                                    </td>
+                                    <td>
+                                        {{ user.mobile_phone }}
+                                    </td>
+
+                                    <td>
+                                        {{ user.passport_data }}
+                                    </td>
+                                    <td>
+                                        {{ user.inn }}
+                                    </td>
+                                    <td>
+                                        {{ user.marital_status }}
+                                    </td>
+
+                                    <td>
+                                        <a href="{% url 'update_mahalla' user.mahalla.id %}" style="color: red">
+                                            {{ user.mahalla.name }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ user.actual_address }}
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" data-id="{{ user.id }}" value="{{ user.id }}"
+                                                id="butt"
+                                                class="h3 btn btn-danger m-0 text-white font-weight-bold"
+                                                data-toggle="modal" data-target="#del{{ user.id }}">
+                                            X
+                                        </button>
+                                    </td>
+
+                                    </tr>
+
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="del{{ user.id }}" tabindex="-1"
+                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">O'chirish</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true"></span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        O'chirishga aminmisiz
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">YO'Q
+                                                        </button>
+                                                        <a type="submit" href="{% url 'delete_user' user.id %}"
+                                                           class="delb btn btn-danger text-white">HA</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                {% endfor %}
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <script>
+                            require(['datatables', 'jquery'], function (datatable, $) {
+                                $('.datatable').DataTable();
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Yangi Fuqaro qo'shish</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <form method="post" action="{% url 'user' %}" enctype="multipart/form-data">
+                    <div class="modal-body">
+
+                        {% csrf_token %}
+                        {{ form|crispy }}
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Yopish</button>
+                        <button type="submit" class="btn btn-primary">Saqlash</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock content %}
+
+{% block javascripts %}
+    <script>
+
+    </script>
+{% endblock %}
