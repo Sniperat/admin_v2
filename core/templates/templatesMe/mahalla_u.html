@@ -1,0 +1,121 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Mahalla{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <h3 class="card-title">{{ mahalla.name }}</h3>
+                        <button id="showform" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                <path fill-rule="evenodd"
+                                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                            </svg>
+                        </button>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="">
+                            <div class="row d-flex justify-content-between">
+                                <div>Po'chta raqami</div>
+                                <div>{{ mahalla.post_code }}</div>
+                            </div>
+                            <div class="row my-2 d-flex justify-content-between">
+                                <div>Nomi</div>
+                                <div>{{ mahalla.name }}</div>
+                            </div>
+                            <div class="row my-2 d-flex justify-content-between">
+                                <div>Mahalla rahbari</div>
+                                <div>{{ mahalla.rais.first_name }}</div>
+                            </div>
+                            <div class="row my-2 d-flex justify-content-between">
+                                <div>Rahbar kotibi</div>
+                                <div>{{ mahalla.secretary.first_name }}</div>
+                            </div>
+                            <div class="row my-2 d-flex justify-content-between">
+                                <div>Maydoni</div>
+                                <div>{{ mahalla.area }} Kvadrat Kilometr</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 hideform" style="display: none">
+                <div class="card">
+                    <div class="card-header ">
+                        <h3 class="card-title">{{ mahalla.name }}</h3>
+
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{% url 'update_mahalla' mahalla.id %}">
+                            {% csrf_token %}
+
+                            <div id="div_id_post_code" class="form-group"><label for="id_post_code"
+                                                                                 class=" requiredField">
+                                Post code<span class="asteriskField">*</span> </label>
+                                <div class=""><input type="text" name="post_code" maxlength="6" value="{{ mahalla.post_code }}"
+                                                     class="textinput textInput form-control" required
+                                                     id="id_post_code"></div>
+                            </div>
+                            <div id="div_id_name" class="form-group"><label for="id_name" class=" requiredField">
+                                Name<span class="asteriskField">*</span> </label>
+                                <div class=""><input type="text" name="name" maxlength="255" value="{{ mahalla.name }}"
+                                                     class="textinput textInput form-control" required id="id_name">
+                                </div>
+                            </div>
+                            <div id="div_id_rais" class="form-group"><label for="id_rais" class=" requiredField">
+                                Rais<span class="asteriskField">*</span> </label>
+                                <div class=""><select name="rais" class="select form-control" required id="id_rais">
+                                    {% for us in users %}
+                                    <option value="{{ mahalla.rais.id }}" {% if us.id == mahalla.rais.id %}selected{% endif %}>{{ us.first_name }}</option>
+                                    {% endfor %}
+
+
+                                </select></div>
+                            </div>
+                            <div id="div_id_secretary" class="form-group"><label for="id_secretary"
+                                                                                 class=" requiredField">
+                                Secretary<span class="asteriskField">*</span> </label>
+                                <div class=""><select name="secretary" class="select form-control" required
+                                                      id="id_secretary">
+                                    {% for us in users %}
+                                    <option value="{{ mahalla.secretary.id }}" {% if us.id == mahalla.secretary.id %}selected{% endif %}>{{ us.first_name }}</option>
+                                    {% endfor %}
+
+                                </select></div>
+                            </div>
+                            <div id="div_id_area" class="form-group"><label for="id_area" class=" requiredField">
+                                Area<span class="asteriskField">*</span> </label>
+                                <div class=""><input type="number" name="area" class="numberinput form-control" required
+                                                     id="id_area" value="{{ mahalla.area }}"></div>
+                            </div>
+                            <div>
+                                <button class="btn btn-success text-right" type="submit">Saqlash</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
+
+{% block javascripts %}
+    <script>
+        $('#showform').click(function () {
+            $(".hideform").css('display', 'inline')
+        })
+    </script>
+{% endblock %}
