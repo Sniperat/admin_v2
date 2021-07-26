@@ -70,7 +70,7 @@ class Mahalla_update_view(View):
         content = {
             'mahalla': Mahalla.objects.get(id=pk),
             'form': MahallaForm(),
-            'users':User_info.objects.all()
+            'users': User_info.objects.all()
         }
         return render(request, 'templatesMe/mahalla_u.html', content)
 
@@ -85,8 +85,6 @@ class Mahalla_update_view(View):
         return redirect('update_mahalla', pk)
 
 
-
-
 class Bussines_view(View):
     def get(self, request):
         content = {
@@ -96,7 +94,91 @@ class Bussines_view(View):
         return render(request, 'templatesMe/bussines.html', content)
 
     def post(self, request):
-        form = MahallaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('mahalla')
+        bussiness = BussinessForm(request.POST)
+        if bussiness.is_valid():
+            bussiness.save()
+            return redirect('bussines')
+
+
+def delete_bussines(request, pk):
+    print(pk)
+    Business.objects.get(id=pk).delete()
+
+    return redirect('bussines')
+
+
+class Bussiness_update_view(View):
+    def get(self, request, pk):
+        content = {
+            'business': Business.objects.get(id=pk),
+            'form': BussinessForm(),
+            'users': User_info.objects.all()
+        }
+        return render(request, 'templatesMe/bussines_u.html', content)
+
+    def post(self, request, pk):
+        print(request.POST['owner'])
+        user = User_info.objects.get(id=int(request.POST['owner']))
+        mah = Business.objects.get(id=pk)
+        mah.number = request.POST['number']
+        mah.name = request.POST['name']
+        mah.type = request.POST['type']
+        mah.destination = request.POST['destination']
+        mah.inn = request.POST['inn']
+        mah.checking_account = request.POST['checking_account']
+        mah.address = request.POST['address']
+        mah.owner = user
+        mah.phone_number = request.POST['phone_number']
+
+        mah.save()
+
+        return redirect('update_bussiness', pk)
+
+
+class Farm_view(View):
+    def get(self, request):
+        content = {
+            'farm': Farm.objects.all(),
+            'form': FarmForm()
+        }
+        return render(request, 'templatesMe/farm.html', content)
+
+    def post(self, request):
+        farm = FarmForm(request.POST)
+        if farm.is_valid():
+            farm.save()
+            return redirect('farm')
+
+
+def delete_farm(request, pk):
+    print(pk)
+    Farm.objects.get(id=pk).delete()
+
+    return redirect('farm')
+
+
+class Farm_update_view(View):
+    def get(self, request, pk):
+        content = {
+            'farm': Farm.objects.get(id=pk),
+            'form': FarmForm(),
+            'users': User_info.objects.all()
+        }
+        return render(request, 'templatesMe/farm_u.html', content)
+
+    def post(self, request, pk):
+        print(request.POST['owner'])
+        user = User_info.objects.get(id=int(request.POST['owner']))
+        mah = Farm.objects.get(id=pk)
+        mah.number = request.POST['number']
+        mah.name = request.POST['name']
+        mah.area = request.POST['area']
+        mah.inn = request.POST['inn']
+        mah.checking_account = request.POST['checking_account']
+        mah.address = request.POST['address']
+        mah.owner = user
+        mah.phone_number = request.POST['phone_number']
+
+        mah.save()
+
+        return redirect('update_farm', pk)

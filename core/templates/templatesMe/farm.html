@@ -25,20 +25,19 @@
                                         <th>#</th>
                                         <th>Nomi</th>
                                         <th>Tadbirkor</th>
-                                        <th>Turi</th>
-                                        <th>Yo'nalish</th>
+                                        <th>Maydon</th>
                                         <th>Manzil</th>
                                         <th>Telefon</th>
 
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for mah in bussines %}
+                                    {% for mah in farm %}
                                         <tr>
                                             <td>{{ mah.number }}</td>
                                             <td>
                                                 <div>
-                                                    <a href="{% url 'update_bussiness' mah.id %}">{{ mah.name }}</a>
+                                                    <a href="{% url 'update_farm' mah.id %}">{{ mah.name }}</a>
                                                  </div>
                                             </td>
                                             <td>
@@ -46,10 +45,7 @@
                                             </td>
 
                                             <td>
-                                                {{ mah.type }}
-                                            </td>
-                                            <td>
-                                                {{ mah.destination }}
+                                                {{ mah.area }}
                                             </td>
                                             <td>
                                                 {{ mah.address }}
@@ -84,7 +80,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">YO'Q</button>
-                        <a type="submit" href="{% url 'delete_bussines' mah.id %}" class="delb btn btn-danger text-white">HA</a>
+                        <a type="submit" href="{% url 'delete_farm' mah.id %}" class="delb btn btn-danger text-white">HA</a>
                     </div>
 
             </div>
@@ -115,7 +111,7 @@
                         <span aria-hidden="true"></span>
                     </button>
                 </div>
-                <form method="post" action="{% url 'bussines' %}">
+                <form method="post" action="{% url 'farm' %}">
                     <div class="modal-body">
 
                         {% csrf_token %}
