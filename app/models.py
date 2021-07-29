@@ -7,7 +7,7 @@ class User_info(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     second_name = models.CharField(max_length=50)
-    photo = models.ImageField(upload_to='avatars/')
+    photo = models.ImageField(upload_to='avatars/',  default='core/static/assets/images/user.png')
     birth_date = models.DateField()
     sex = models.CharField(max_length=5)
     passport_data = models.CharField(max_length=9)
@@ -19,9 +19,9 @@ class User_info(models.Model):
     education = models.CharField(max_length=50, blank=True, null=True)
     law_status = models.BooleanField()
     mobile_phone = models.CharField(max_length=14)
-    home_phone = models.CharField(max_length=14)
-    work_phone = models.CharField(max_length=14)
-    mahalla = models.ForeignKey("Mahalla", on_delete=models.CASCADE, null=True, blank=True)
+    home_phone = models.CharField(max_length=14, null=True, blank=True)
+    work_phone = models.CharField(max_length=14, null=True, blank=True)
+    mahalla = models.ForeignKey("Mahalla", on_delete=models.PROTECT)
 
     def __str__(self):
         return f"{self.last_name} {self.first_name} {self.second_name}"
@@ -30,8 +30,8 @@ class User_info(models.Model):
 class Mahalla(models.Model):
     post_code = models.CharField(max_length=6)
     name = models.CharField(max_length=255)
-    rais = models.OneToOneField(User_info, on_delete=models.CASCADE, related_name='mahalla_boss')
-    secretary = models.OneToOneField(User_info, on_delete=models.CASCADE, related_name='mahalla_kotiba')
+    rais = models.OneToOneField(User_info, on_delete=models.CASCADE, blank=True, null=True, related_name='mahalla_boss')
+    secretary = models.OneToOneField(User_info, on_delete=models.CASCADE, blank=True, null=True, related_name='mahalla_kotiba')
     area = models.IntegerField()
 
 

@@ -36,7 +36,8 @@
                             <tr>
                                 {% for user in u %}
                                     <td><span class="text-muted">
-                                        foto
+                                        <span class="avatar avatar-md d-block"
+                                                  style="background-image: url({{ user.photo.url }})"></span>
                                     </span></td>
                                     <td>
                                         <a href="{% url 'update_user' user.id %}" class="text-inherit">
