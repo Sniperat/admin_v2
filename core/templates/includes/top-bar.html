@@ -1,52 +1,107 @@
+<style>
+    .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
 
-            <div class="header py-4">
-                <div class="container">
-                  <div class="d-flex">
+    .dropdown-menu {
+        margin-top: 0px !important;
+        margin-left: 0px !important;
+    }
 
-                      <a class="header-brand pr-5" href="{% url 'home' %}">Ijtimoiy soha</a>
-                      <a class="header-brand pr-5" href="{% url 'bussines' %}">Tadbirkorlar</a>
-                      <a class="header-brand pr-5" href="{% url 'farm' %}">Fermerlar</a>
-                      <a class="header-brand pr-5" href="">Qishloq xo'jaligi</a>
-                      <a class="header-brand pr-5" href="{% url 'mahalla' %}">Maxalla</a>
-                    <div class="d-flex order-lg-2 ml-auto">
-                      <div class="nav-item d-none d-md-flex">
-                        <a href="https://t.me/karakhanov" class="btn btn-sm btn-outline-primary" target="_blank">Avtor</a>
-                      </div>
-                      <div class="dropdown d-none d-md-flex">
-                        <a class="nav-link icon" data-toggle="dropdown">
-                          <i class="fe fe-bell"></i>
-                          <span class="nav-unread"></span>
+    .dropright:hover > .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-item {
+        color: black;
+        background: white;
+    }
+
+    .dropdown > .dropdown-toggle:active {
+        pointer-events: none;
+    }
+
+</style>
+
+<div class="header py-4 ">
+    <div class="container">
+        <div class="d-flex align-items-center">
+
+            <a class="header-brand pr-5" id="for_ish_s" href="{% url 'home' %}">Ijtimoiy soha</a>
+
+            <div class="dropdown header-brand pr-5" style="z-index: 100">
+                <button class="btn  " style="font-size: 20px !important;" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Tadbirkorlar
+                </button>
+                <div class="dropdown-menu" style="font-size: 18px; color: black !important;"
+                     aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{% url 'bussines' %}">Ишлаб чиқарувчи</a>
+                    <a class="dropdown-item" href="{% url 'bussines' %}">Хизмат корсатувчи</a>
+                    <a class="dropdown-item" href="#">Экспартёр</a>
+                    <a class="dropdown-item" href="{% url 'farm' %}">Fermerlar</a>
+                </div>
+            </div>
+{#            <a class="header-brand pr-5" href="{% url 'farm' %}">Fermerlar</a>#}
+            <div class="dropdown  pr-5">
+                <button class="btn  " style="font-size: 20px !important;" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Қишлоқ хўжалиги
+                </button>
+                <div class="dropdown-menu" style="font-size: 18px; color: black !important; z-index: 1000 !important;"
+                     aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Фермер</a>
+                    <a class="dropdown-item" href="#">Агро фирма</a>
+                    <a class="dropdown-item" href="#">Дехкон хожалиги </a>
+                    <a class="dropdown-item" href="#">Томорка ерлари </a>
+                    <a class="dropdown-item" href="#">Томорка хизмати </a>
+                    <a class="dropdown-item" href="#">Усимликлар клиникаси </a>
+                </div>
+            </div>
+            <a class="header-brand pr-5" href="{% url 'mahalla' %}">Maxalla</a>
+            <div class="d-flex order-lg-2 ml-auto">
+                <div class="nav-item d-none d-md-flex">
+                    <a href="https://t.me/karakhanov" class="btn btn-sm btn-outline-primary" target="_blank">Avtor</a>
+                </div>
+                <div class="dropdown d-none d-md-flex">
+                    <a class="nav-link icon" data-toggle="dropdown">
+                        <i class="fe fe-bell"></i>
+                        <span class="nav-unread"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                        <a href="#" class="dropdown-item d-flex">
+                            <span class="avatar mr-3 align-self-center"
+                                  style="background-image: url(/static/assets/demo/faces/male/41.jpg)"></span>
+                            <div>
+                                <strong>Nathan</strong> pushed new commit: Fix page load performance issue.
+                                <div class="small text-muted">10 minutes ago</div>
+                            </div>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <a href="#" class="dropdown-item d-flex">
-                            <span class="avatar mr-3 align-self-center" style="background-image: url(/static/assets/demo/faces/male/41.jpg)"></span>
+                        <a href="#" class="dropdown-item d-flex">
+                            <span class="avatar mr-3 align-self-center"
+                                  style="background-image: url(/static/assets/demo/faces/female/1.jpg)"></span>
                             <div>
-                              <strong>Nathan</strong> pushed new commit: Fix page load performance issue.
-                              <div class="small text-muted">10 minutes ago</div>
+                                <strong>Alice</strong> started new task: Tabler UI design.
+                                <div class="small text-muted">1 hour ago</div>
                             </div>
-                          </a>
-                          <a href="#" class="dropdown-item d-flex">
-                            <span class="avatar mr-3 align-self-center" style="background-image: url(/static/assets/demo/faces/female/1.jpg)"></span>
+                        </a>
+                        <a href="#" class="dropdown-item d-flex">
+                            <span class="avatar mr-3 align-self-center"
+                                  style="background-image: url(/static/assets/demo/faces/female/18.jpg)"></span>
                             <div>
-                              <strong>Alice</strong> started new task: Tabler UI design.
-                              <div class="small text-muted">1 hour ago</div>
+                                <strong>Rose</strong> deployed new version of NodeJS REST Api V3
+                                <div class="small text-muted">2 hours ago</div>
                             </div>
-                          </a>
-                          <a href="#" class="dropdown-item d-flex">
-                            <span class="avatar mr-3 align-self-center" style="background-image: url(/static/assets/demo/faces/female/18.jpg)"></span>
-                            <div>
-                              <strong>Rose</strong> deployed new version of NodeJS REST Api V3
-                              <div class="small text-muted">2 hours ago</div>
-                            </div>
-                          </a>
-                          <div class="dropdown-divider"></div>
-                          <a href="#" class="dropdown-item text-center">Mark all as read</a>
-                        </div>
-                      </div>
-                      <div class="dropdown">
-                        <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                          <span class="avatar" style="background-image: url(/static/assets/demo/faces/female/25.jpg)"></span>
-                          <span class="ml-2 d-none d-lg-block">
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item text-center">Mark all as read</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                        <span class="avatar"
+                              style="background-image: url(/static/assets/demo/faces/female/25.jpg)"></span>
+                        <span class="ml-2 d-none d-lg-block">
                             <span class="text-default">
                                 {{ current_user.username }}
                             </span>
@@ -54,30 +109,31 @@
                                 {{ current_user.email }}
                             </small>
                           </span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <a class="dropdown-item">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                        <a class="dropdown-item">
                             <i class="dropdown-icon fe fe-user"></i> Profil
-                          </a>
-                          <a class="dropdown-item" href="/page-email.html">
+                        </a>
+                        <a class="dropdown-item" href="/page-email.html">
                             <span class="float-right"><span class="badge badge-primary">6</span></span>
                             <i class="dropdown-icon fe fe-mail"></i> Pochta
-                          </a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="https://t.me/karakhanov">
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="https://t.me/karakhanov">
                             <i class="dropdown-icon fe fe-help-circle"></i> Support
-                          </a>
-                          <a class="dropdown-item" href={% url 'logout' %} >
+                        </a>
+                        <a class="dropdown-item" href={% url 'logout' %}>
                             <i class="dropdown-icon fe fe-log-out"></i> Sign out
-                          </a>
-                        </div>
-                      </div>
+                        </a>
                     </div>
-                    <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
-                      <span class="header-toggler-icon"></span>
-                    </a>
-                  </div>
                 </div>
             </div>
+            <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
+               data-target="#headerMenuCollapse">
+                <span class="header-toggler-icon"></span>
+            </a>
+        </div>
+    </div>
+</div>
 
       

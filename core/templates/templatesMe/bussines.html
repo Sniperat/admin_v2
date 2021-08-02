@@ -39,10 +39,12 @@
                                             <td>
                                                 <div>
                                                     <a href="{% url 'update_bussiness' mah.id %}">{{ mah.name }}</a>
-                                                 </div>
+                                                </div>
                                             </td>
                                             <td>
-                                                <div class="small"><a href="{% url 'update_user' mah.owner.id %}">{{ mah.owner.first_name }} {{ mah.owner.last_name }} {{ mah.owner.second_name }}</a></div>
+                                                <div class="small"><a
+                                                        href="{% url 'update_user' mah.owner.id %}">{{ mah.owner.first_name }} {{ mah.owner.last_name }} {{ mah.owner.second_name }}</a>
+                                                </div>
                                             </td>
 
                                             <td>
@@ -59,7 +61,8 @@
                                             </td>
 
                                             <td class="text-center">
-                                                <button type="button" data-id="{{ mah.id }}" value="{{ mah.id }}" id="butt"
+                                                <button type="button" data-id="{{ mah.id }}" value="{{ mah.id }}"
+                                                        id="butt"
                                                         class="h3 btn btn-danger m-0 text-white font-weight-bold"
                                                         data-toggle="modal" data-target="#{{ mah.id }}">
                                                     X
@@ -67,35 +70,45 @@
                                             </td>
                                         </tr>
 
-    <!-- Modal -->
-    <div class="modal fade" id="{{ mah.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">O'chirish</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"></span>
-                    </button>
-                </div>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="{{ mah.id }}" tabindex="-1"
+                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">O'chirish</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true"></span>
+                                                        </button>
+                                                    </div>
 
-                    <div class="modal-body">
-                        O'chirishga aminmisiz
+                                                    <div class="modal-body">
+                                                        O'chirishga aminmisiz
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">YO'Q</button>
-                        <a type="submit" href="{% url 'delete_bussines' mah.id %}" class="delb btn btn-danger text-white">HA</a>
-                    </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">YO'Q
+                                                        </button>
+                                                        <a type="submit" href="{% url 'delete_bussines' mah.id %}"
+                                                           class="delb btn btn-danger text-white">HA</a>
+                                                    </div>
 
-            </div>
-        </div>
-    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
 
                                     {% endfor %}
 
                                     </tbody>
                                 </table>
+                            <script>
+                                require(['datatables', 'jquery'], function (datatable, $) {
+                                    $('.datatable').DataTable();
+                                });
+                            </script>
                             </div>
 
                         </div>
@@ -138,7 +151,5 @@
 {% endblock content %}
 
 {% block javascripts %}
-    <script>
 
-    </script>
 {% endblock %}
